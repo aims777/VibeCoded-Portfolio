@@ -1,1 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeCoded — The AI Portfolio of Aiman Saba</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        :root {
+            --neon-blue: #00d4ff;
+            --neon-violet: #b24bf3;
+            --dark-bg: #0a0a0a;
+            --card-bg: #1a1a2e;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-violet));
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Section Styling */
+        section {
+            min-height: 100vh;
+            padding: 6rem 2rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        #home {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-violet));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 10px var(--neon-blue));
+            }
+            to {
+                filter: drop-shadow(0 0 20px var(--neon-violet));
+            }
+        }
+
+        .hero-content h2 {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .hero-content .tagline {
+            font-size: 1.2rem;
+            color: var(--neon-blue);
+            font-style: italic;
+            margin-top: 1rem;
+            max-width: 700px;
+        }
+
+        .role {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid var(--neon-blue);
+            border-radius: 50px;
+            margin: 1.5rem 0;
+            font-weight: 600;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-violet));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(178, 75, 243, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.4);
+            border-color: var(--neon-blue);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--neon-blue);
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tool-tag {
+            background: rgba(178, 75, 243, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid var(--neon-violet);
+        }
+
+        .impact {
+            color: var(--neon-violet);
+            font-weight: 600;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Showcase Section */
+        .video-container {
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.3);
+            border: 2px solid var(--neon-blue);
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
+
+        /* Tools Section */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .tool-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--card-bg);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .tool-item:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+        }
+
+        .tool-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .tool-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        .badge-mastered {
+            background: rgba(0, 212, 255, 0.2);
+            border: 1px solid var(--neon-blue);
+            color: var(--neon-blue);
+        }
+
+        .badge-applied {
+            background: rgba(178, 75, 243, 0.2);
+            border: 1px solid var(--neon-violet);
+            color: var(--neon-violet);
+        }
+
+        .badge-explored {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--text-secondary);
+            color: var(--text-secondary);
+        }
+
+        /* About Section */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .contact-info {
+            margin: 2rem 0;
+        }
+
+        .contact-info a {
+            color: var(--neon-blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-btn {
+            padding: 0.75rem 2rem;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-violet));
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(10, 10, 10, 0.95);
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+            color: var(--text-secondary);
+        }
+
+        /* Floating Chatbot Button */
+        .chatbot-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-violet));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 25px rgba(0, 212, 255, 0.5);
+            transition: all 0.3s ease;
+            z-index: 999;
+            border: none;
+            font-size: 1.5rem;
+        }
+
+        .chatbot-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 35px rgba(0, 212, 255, 0.7);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .video-container iframe {
+                height: 300px;
+            }
+
+            section {
+                padding: 5rem 1rem 3rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, var(--card-bg), rgba(26, 26, 46, 0.95));
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            border: 2px solid var(--neon-blue);
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.4);
+            animation: modalSlideIn 0.4s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-content h2 {
+            color: var(--neon-blue);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+
+        .modal-content p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            font-size: 2.5rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            line-height: 1;
+        }
+
+        .close-btn:hover {
+            color: var(--neon-violet);
+            transform: rotate(90deg);
+        }
+
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .highlight-item {
+            background: rgba(0, 212, 255, 0.05);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            border-left: 3px solid var(--neon-blue);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .highlight-icon {
+            font-size: 1.5rem;
+        }
+
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--neon-violet);
+            margin: 2rem 0;
+            padding: 1rem;
+            background: rgba(178, 75, 243, 0.1);
+            border-radius: 10px;
+            border: 1px solid var(--neon-violet);
+        }
+
+            width: 100%;
+            border-radius: 15px;
+            margin-top: 2rem;
+            border: 2px solid var(--neon-blue);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .modal-content::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .modal-content::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-violet));
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                padding: 2rem;
+                width: 95%;
+            }
+
+            .modal-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .close-btn {
+                top: 1rem;
+                right: 1rem;
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">🏠 Home</a></li>
+            <li><a href="#projects">🧠 Projects</a></li>
+            <li><a href="#showcase">🎥 Showcase</a></li>
+            <li><a href="#tools">⚙️ Tools</a></li>
+            <li><a href="#about">💬 About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home">
+        <div class="hero-content fade-in">
+            <h1>VibeCoded</h1>
+            <h2>The AI Portfolio of Aiman Saba</h2>
+            <div class="role">AI Engineer Intern @ ORANTS AI (2025)</div>
+            <p class="tagline">Crafting Intelligence Through Data, Design, and Automation.</p>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="section-header">
+            <h2>🧠 Projects</h2>
+            <p>Innovative AI solutions that make an impact</p>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>Data Science with GenAI Analytics</h3>
+                <p>Advanced analytics platform leveraging generative AI for data insights and predictive modeling.</p>
+                <div class="tools">
+                    <span class="tool-tag">Python</span>
+                    <span class="tool-tag">Hugging Face</span>
+                    <span class="tool-tag">Pandas</span>
+                </div>
+                <div class="impact">📊 Impact: 40% faster insights generation</div>
+            </div>
+
+            <div class="project-card">
+                <h3>Vibe Coding with Google</h3>
+                <p>Rapid AI app development using Google's cutting-edge tools and APIs for intelligent applications.</p>
+                <div class="tools">
+                    <span class="tool-tag">Google API</span>
+                    <span class="tool-tag">Gemini</span>
+                    <span class="tool-tag">JavaScript</span>
+                </div>
+                <div class="impact">🚀 Impact: Built 5 apps in 48 hours</div>
+            </div>
+
+            <div class="project-card">
+                <h3>Automation Arena</h3>
+                <p>No-code automation workflows designed to streamline business processes with intelligent triggers.</p>
+                <div class="tools">
+                    <span class="tool-tag">Gumloop</span>
+                    <span class="tool-tag">Automation</span>
+                    <span class="tool-tag">APIs</span>
+                </div>
+                <div class="impact">⚡ Impact: Saved 20+ hours/week</div>
+            </div>
+
+            <div class="project-card">
+                <h3>AI Agent Development</h3>
+                <p>Intelligent autonomous agents capable of complex decision-making and task execution.</p>
+                <div class="tools">
+                    <span class="tool-tag">Google Colab</span>
+                    <span class="tool-tag">GenAI</span>
+                    <span class="tool-tag">Python</span>
+                </div>
+                <div class="impact">🤖 Impact: Automated 15+ workflows</div>
+            </div>
+
+            <div class="project-card">
+                <h3>AI Influencer Tracker</h3>
+                <p>Data-driven platform for tracking and analyzing AI influencers across social media platforms.</p>
+                <div class="tools">
+                    <span class="tool-tag">Web Scraping</span>
+                    <span class="tool-tag">APIs</span>
+                    <span class="tool-tag">Analytics</span>
+                </div>
+                <div class="impact">📈 Impact: Tracked 50+ influencers</div>
+            </div>
+
+            <div class="project-card">
+                <h3>Stack Showdown</h3>
+                <p>Comparative analysis of MERN vs Next.js for AI-powered web application development.</p>
+                <div class="tools">
+                    <span class="tool-tag">MERN</span>
+                    <span class="tool-tag">Next.js</span>
+                    <span class="tool-tag">React</span>
+                </div>
+                <div class="impact">🏆 Impact: Optimized stack selection</div>
+            </div>
+
+            <div class="project-card">
+                <h3>AI Content Forge</h3>
+                <p>AI-powered content generation system for creating high-quality articles and social media posts.</p>
+                <div class="tools">
+                    <span class="tool-tag">GPT-4</span>
+                    <span class="tool-tag">Python</span>
+                    <span class="tool-tag">NLP</span>
+                </div>
+                <div class="impact">✍️ Impact: Generated 500+ posts</div>
+            </div>
+
+            <div class="project-card">
+                <h3>Vibe Coding Sprint</h3>
+                <p>Rapid prototyping sessions using WindSurf AI for accelerated development cycles.</p>
+                <div class="tools">
+                    <span class="tool-tag">WindSurf</span>
+                    <span class="tool-tag">AI Coding</span>
+                    <span class="tool-tag">Prototyping</span>
+                </div>
+                <div class="impact">⚡ Impact: 3x faster development</div>
+            </div>
+
+            <div class="project-card">
+                <h3>Viral Replicator</h3>
+                <p>AI system that analyzes viral content patterns and generates optimized content strategies.</p>
+                <div class="tools">
+                    <span class="tool-tag">ML</span>
+                    <span class="tool-tag">Analytics</span>
+                    <span class="tool-tag">Python</span>
+                </div>
+                <div class="impact">🔥 Impact: 85% engagement boost</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcase Section -->
+    <section id="showcase">
+        <div class="section-header">
+            <h2>🎥 Project Showcase</h2>
+            <p>Watch my projects come to life</p>
+        </div>
+        <div class="video-container">
+            <iframe src="https://www.loom.com/embed/576f131c314e4b3885dc13825d6d333e" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+            <h3 style="color: var(--neon-blue); margin-bottom: 1rem;">AI Agent Development - Project Demo</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Watch the complete demonstration of my AI automation agent</p>
+            <a href="https://www.loom.com/share/576f131c314e4b3885dc13825d6d333e" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 0.75rem 2rem; background: linear-gradient(135deg, var(--neon-blue), var(--neon-violet)); border-radius: 50px; color: white; font-weight: 600; text-decoration: none; box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3); transition: all 0.3s ease;">🎥 Watch Demo Video</a>
+        </div>
+        
+        <div class="video-container" style="margin-top: 3rem;">
+            <div style="text-align: center; padding: 2rem; background: var(--card-bg); border-radius: 15px; border: 1px solid rgba(0, 212, 255, 0.2);">
+                <h3 style="color: var(--neon-violet); margin-bottom: 1rem;">Automation Arena - Project Demo</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Explore my intelligent workflow automation system</p>
+                <a href="https://www.gumloop.com/pipeline?workbook_id=9hAkbYwYKgFkmfGab6MeP7&tab=1&run_id=DncEcQqkhkaNdvWkzffG27" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 0.75rem 2rem; background: linear-gradient(135deg, var(--neon-blue), var(--neon-violet)); border-radius: 50px; color: white; font-weight: 600; text-decoration: none; box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3); transition: all 0.3s ease;">🔗 View Live Workflow</a>
+            </div>
+        </div>
+        
+        <div class="video-container" style="margin-top: 3rem;">
+            <iframe src="https://www.loom.com/embed/4d86e5cb79e24dd79adb022c8f9d4f95" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+            <h3 style="color: var(--neon-blue); margin-bottom: 1rem;">AI Influencer Tracker - Project Demo</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Watch how I tracked and analyzed top AI influencers</p>
+            <a href="https://www.loom.com/share/4d86e5cb79e24dd79adb022c8f9d4f95" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 0.75rem 2rem; background: linear-gradient(135deg, var(--neon-blue), var(--neon-violet)); border-radius: 50px; color: white; font-weight: 600; text-decoration: none; box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3); transition: all 0.3s ease;">🎥 Watch Demo Video</a>
+        </div>
+        
+        <div class="video-container" style="margin-top: 3rem;">
+            <iframe src="https://www.loom.com/embed/696ba37d76ba4f49a91fa4030139a5df" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+            <h3 style="color: var(--neon-blue); margin-bottom: 1rem;">Vibe Coding Sprint - Project Demo</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Watch how I built a mobile AI app using Windsurf's Vibe Coding tools</p>
+            <a href="https://www.loom.com/share/696ba37d76ba4f49a91fa4030139a5df" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 0.75rem 2rem; background: linear-gradient(135deg, var(--neon-blue), var(--neon-violet)); border-radius: 50px; color: white; font-weight: 600; text-decoration: none; box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3); transition: all 0.3s ease;">🎥 Watch Demo Video</a>
+        </div>
+        
+        <div class="video-container" style="margin-top: 3rem;">
+            <iframe src="https://www.loom.com/embed/bfff34caf6b54b6489882b7b1b0d2ca0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+            <h3 style="color: var(--neon-blue); margin-bottom: 1rem;">Viral Replicator - Project Demo</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Watch how I analyzed and replicated viral AI content patterns</p>
+            <a href="https://www.loom.com/share/bfff34caf6b54b6489882b7b1b0d2ca0" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 0.75rem 2rem; background: linear-gradient(135deg, var(--neon-blue), var(--neon-violet)); border-radius: 50px; color: white; font-weight: 600; text-decoration: none; box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3); transition: all 0.3s ease;">🎥 Watch Demo Video</a>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="tools">
+        <div class="section-header">
+            <h2>⚙️ Tech Stack</h2>
+            <p>Tools and technologies I work with</p>
+        </div>
+        <div class="tools-grid">
+            <div class="tool-item">
+                <div class="tool-icon">🐍</div>
+                <div class="tool-name">Python</div>
+                <span class="tool-badge badge-mastered">Mastered</span>
+            </div>
+
+            <div class="tool-item">
+                <div class="tool-icon">⚛️</div>
+                <div class="tool-name">React</div>
+                <span class="tool-badge badge-mastered">Mastered</span>
+            </div>
+
+            <div class="tool-item">
+                <div class="tool-icon">🤗</div>
+                <div class="tool-name">Hugging Face</div>
+                <span class="tool-badge badge-applied">Applied</span>
+            </div>
+
+            <div class="tool-item">
+                <div class="tool-icon">▲</div>
+                <div class="tool-name">Next.js</div>
+                <span class="tool-badge badge-applied">Applied</span>
+            </div>
+
+            <div class="tool-item">
+                <div class="tool-icon">🔄</div>
+                <div class="tool-name">Gumloop</div>
+                <span class="tool-badge badge-applied">Applied</span>
+            </div>
+
+            <div class="tool-item">
+                <div class="tool-icon">🌊</div>
+                <div class="tool-name">WindSurf</div>
+                <span class="tool-badge badge-explored">Explored</span>
+            </div>
+
+            <div class="tool-item">
+                <div class="tool-icon">🎨</div>
+                <div class="tool-name">Canva</div>
+                <span class="tool-badge badge-mastered">Mastered</span>
+            </div>
+
+            <div class="tool-item">
+                <div class="tool-icon">🎐</div>
+                <div class="tool-name">Tailwind</div>
+                <span class="tool-badge badge-applied">Applied</span>
+            </div>
+
+            <div class="tool-item">
+                <div class="tool-icon">🐙</div>
+                <div class="tool-name">GitHub</div>
+                <span class="tool-badge badge-mastered">Mastered</span>
+            </div>
+
+            <div class="tool-item">
+                <div class="tool-icon">🔍</div>
+                <div class="tool-name">Google API</div>
+                <span class="tool-badge badge-applied">Applied</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="section-header">
+            <h2>💬 About Me</h2>
+            <p>AI Engineer | Developer | Innovator</p>
+        </div>
+        <div class="about-content">
+            <p>
+                Hi, I'm <strong>Aiman Saba</strong>, an AI Engineer Intern at ORANTS AI with a passion for building intelligent systems that solve real-world problems. I specialize in rapid prototyping, automation, and leveraging cutting-edge AI tools to create impactful solutions.
+            </p>
+            <p>
+                From data analytics to full-stack development, I thrive in the intersection of creativity and technology. My journey involves continuous learning, experimenting with new frameworks, and pushing the boundaries of what's possible with AI.
+            </p>
+            <div class="contact-info">
+                <p>📧 Email: <a href="mailto:aimansaba.777@gmail.com">aimansaba.777@gmail.com</a></p>
+            </div>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/aiman-saba-44a007255" class="social-btn" target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                </a>
+                <a href="https://github.com/aims777" class="social-btn" target="_blank" rel="noopener noreferrer">
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Aiman Saba — VibeCoded Portfolio</p>
+    </footer>
+
+    <!-- Floating Chatbot Button -->
+    <button class="chatbot-btn" onclick="alert('Chatbot feature coming soon! 🤖')" aria-label="Chat with AI Assistant">
+        💬
+    </button>
+
+    <script>
+        // Smooth scroll animation trigger
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all project cards and tool items
+        document.querySelectorAll('.project-card, .tool-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        // Add active state to navigation
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Project Modal Functionality
+        const projectDetails = {
+            'Data Science with GenAI Analytics': {
+                title: 'Exploring Generative AI for Predictive Data Analytics',
+                description: 'Built advanced analytics models integrating Hugging Face transformers with Python for sentiment and trend analysis. Focused on leveraging GenAI to uncover hidden patterns in complex datasets.',
+                highlights: [
+                    { icon: '📊', label: 'Platform', value: 'Python + Jupyter Notebook' },
+                    { icon: '🧠', label: 'Tech Used', value: 'Pandas, Hugging Face Transformers, Matplotlib' },
+                    { icon: '⚙️', label: 'Function', value: 'Automated data cleaning and predictive modeling' },
+                    { icon: '🚀', label: 'Impact', value: 'Achieved 92% accuracy in trend detection' }
+                ],
+                points: '🏅 20 Points Earned',
+                image: 'UC-129d87df-38b6-414e-b85a-f8d45996c15f-1.jpg'
+            },
+            'Vibe Coding with Google': {
+                title: 'Building Smart AI Applications through Google Vibe Coding Framework',
+                description: 'Developed dynamic AI-powered applications using Google\'s Vibe Coding tools, integrating APIs for seamless automation and improved user interactivity.',
+                highlights: [
+                    { icon: '🧩', label: 'Platform', value: 'Google Vibe Coding' },
+                    { icon: '🔗', label: 'Tech Used', value: 'GenAI SDK, Python, Google APIs' },
+                    { icon: '⚙️', label: 'Function', value: 'Designed end-to-end AI workflows and UI logic' },
+                    { icon: '🚀', label: 'Impact', value: 'Enhanced automation accuracy by 35%' }
+                ],
+                points: '🏅 20 Points Earned',
+                image: ''
+            },
+            'Automation Arena': {
+                title: 'Building Intelligent Workflows using Low-Code AI Automation',
+                description: 'Designed smart automation flows to process repetitive tasks, integrating APIs and AI-based decision rules to streamline operations.',
+                highlights: [
+                    { icon: '🤖', label: 'Platform', value: 'Gumloop' },
+                    { icon: '🔗', label: 'Tech Used', value: 'Python, Zapier API, Automation SDKs' },
+                    { icon: '⚙️', label: 'Function', value: 'Trigger-based workflow automation' },
+                    { icon: '🚀', label: 'Impact', value: 'Reduced manual effort by 60%' }
+                ],
+                points: '🏅 20 Points Earned',
+                workflowLink: 'https://www.gumloop.com/pipeline?workbook_id=9hAkbYwYKgFkmfGab6MeP7&tab=1&run_id=DncEcQqkhkaNdvWkzffG27',
+                image: 'Screenshot-2025-11-02-072711.jpg'
+            },
+            'AI Agent Development': {
+                title: 'Building Intelligent Automation with GenAI + Google API Integration',
+                description: 'Developed a custom AI Agent for automation and real-time data insights using Google Colab, Google API, and Generative AI models. The system dynamically analyzed inputs and produced contextual responses.',
+                highlights: [
+                    { icon: '🤖', label: 'Platform', value: 'Gumloop + Google Colab' },
+                    { icon: '🔗', label: 'Tech Used', value: 'Python, GenAI API, Google API' },
+                    { icon: '⚙️', label: 'Function', value: 'Automated task workflows & data summaries' },
+                    { icon: '🚀', label: 'Impact', value: 'Increased insight generation speed by 40%' }
+                ],
+                points: '🏅 25 Points Earned',
+                workflowLink: 'https://colab.research.google.com/drive/14S-lK6PIodrZEx2RcqZsh5ptcm6JmDUH',
+                image: ''
+            },
+            'AI Influencer Tracker': {
+                title: 'Tracking and Analyzing AI Trends through Social Media Intelligence',
+                description: 'Created an automated influencer tracking dashboard that analyzed top AI creators and their engagement patterns using APIs and sentiment analytics.',
+                highlights: [
+                    { icon: '📊', label: 'Platform', value: 'Gumloop + Twitter API' },
+                    { icon: '🔗', label: 'Tech Used', value: 'Python, NLP, Sentiment Analysis' },
+                    { icon: '⚙️', label: 'Function', value: 'Fetch & evaluate influencer performance metrics' },
+                    { icon: '🚀', label: 'Impact', value: 'Identified top 10 AI influencers in real time' }
+                ],
+                points: '🏅 30 Points Earned',
+                workflowLink: 'https://www.gumloop.com/pipeline?workbook_id=snpTZ8Pe9eEzL1kMUMhTon',
+                spreadsheetLink: 'https://docs.google.com/spreadsheets/d/1SQBljkOtc2H_cmA_BEMckKU5H96dJ_sMBihZ4GIbong/edit?usp=sharing',
+                image: ''
+            },
+            'Stack Showdown': {
+                title: 'Comparing Modern Web Stacks for Real-Time AI Applications',
+                description: 'Conducted an in-depth comparison of popular web architectures to determine optimal frameworks for AI-driven applications.',
+                highlights: [
+                    { icon: '🧠', label: 'Focus', value: 'Performance, scalability, and latency testing' },
+                    { icon: '🔗', label: 'Tech Used', value: 'MERN, Next.js, Remix, Astro' },
+                    { icon: '⚙️', label: 'Function', value: 'Documentation and architecture analysis' },
+                    { icon: '🚀', label: 'Impact', value: 'Found Next.js most efficient for AI integrations' }
+                ],
+                points: '🏅 35 Points Earned',
+                workflowLink: 'https://drive.google.com/file/d/1wUCxqprrbeWenUy4WcKp2C8Ho7uZHxuB/view?usp=sharing',
+                image: ''
+            },
+            'AI Content Forge': {
+                title: 'Writing SEO-Optimized Technical AI Content using Automation',
+                description: 'Authored and optimized AI-related blog content using NLP-based SEO enhancement tools to boost ORANTS\' online visibility.',
+                highlights: [
+                    { icon: '🧩', label: 'Platform', value: 'ORANTS AI Workspace' },
+                    { icon: '🧠', label: 'Tech Used', value: 'NLP, SEO Analyzer, AI Writing Tools' },
+                    { icon: '⚙️', label: 'Function', value: 'Automated keyword generation and readability scoring' },
+                    { icon: '🚀', label: 'Impact', value: 'Increased content engagement rate by 45%' }
+                ],
+                points: '🏅 40 Points Earned',
+                workflowLink: 'https://docs.google.com/document/d/12vxOBlKkMmnwYAqb5uuGe1n9hsQTFI4Sn0RaQmTQo44/edit?usp=sharing',
+                image: ''
+            },
+            'Vibe Coding Sprint': {
+                title: 'Building a Mobile App Using AI-Driven Vibe Coding',
+                description: 'Designed and developed a mobile AI application with Windsurf\'s Vibe Coding tools, implementing real-time interaction and visual AI components.',
+                highlights: [
+                    { icon: '📱', label: 'Platform', value: 'Windsurf AI Workspace' },
+                    { icon: '🔗', label: 'Tech Used', value: 'React, Tailwind, AI APIs' },
+                    { icon: '⚙️', label: 'Function', value: 'Created AI-driven mobile experience with dynamic UI' },
+                    { icon: '🚀', label: 'Impact', value: 'Improved design-to-code speed by 50%' }
+                ],
+                points: '🏅 45 Points Earned',
+                workflowLink: 'https://github.com/aims777/reflectify-ai-agent',
+                liveLink: 'https://aims777.github.io/reflectify-ai-agent/',
+                sourceCodeLink: 'COMPLETE_SOURCE_CODE.txt',
+                image: ''
+            },
+            'Viral Replicator': {
+                title: 'Analyzing and Reproducing Viral AI Trends for Content Creation',
+                description: 'Built a system to detect, analyze, and replicate patterns behind viral AI posts using real-time content monitoring and analytics.',
+                highlights: [
+                    { icon: '📈', label: 'Platform', value: 'Windsurf AI + Documentation Dashboard' },
+                    { icon: '🧠', label: 'Tech Used', value: 'Python, OpenAI API, Data Visualization' },
+                    { icon: '⚙️', label: 'Function', value: 'Identified viral elements in AI content on LinkedIn & X' },
+                    { icon: '🚀', label: 'Impact', value: 'Enhanced content virality understanding by 70%' }
+                ],
+                points: '🏅 50 Points Earned',
+                workflowLink: 'https://github.com/aims777/linkedin-viral-posts',
+                liveLink: 'https://aims777.github.io/linkedin-viral-posts/',
+                sourceCodeLink: 'LINKEDIN-COMPLETE_CODE.txt',
+                image: ''
+            }
+        };
+
+        // Create modal HTML
+        const modalHTML = `
+            <div id="projectModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h2 id="modalTitle"></h2>
+                    <p id="modalDescription"></p>
+                    <div id="modalHighlights"></div>
+                    <div id="modalPoints"></div>
+                    <a id="modalWorkflowLink" href="#" target="_blank" rel="noopener noreferrer" style="display: none; margin-top: 1.5rem; padding: 0.75rem 2rem; background: linear-gradient(135deg, var(--neon-blue), var(--neon-violet)); border-radius: 50px; color: white; font-weight: 600; text-decoration: none; box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3); transition: all 0.3s ease;">🔗 View Live Workflow</a>
+                    <img id="modalImage" src="" alt="Project Certificate" style="display: none;">
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+        const modal = document.getElementById('projectModal');
+        const closeBtn = document.querySelector('.close-btn');
+
+        // Add click event to project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', function() {
+                const projectTitle = this.querySelector('h3').textContent;
+                const projectData = projectDetails[projectTitle];
+                
+                if (projectData) {
+                    document.getElementById('modalTitle').textContent = projectData.title;
+                    document.getElementById('modalDescription').textContent = projectData.description;
+                    
+                    const highlightsHTML = projectData.highlights.map(h => 
+                        `<div class="highlight-item">
+                            <span class="highlight-icon">${h.icon}</span>
+                            <strong>${h.label}:</strong> ${h.value}
+                        </div>`
+                    ).join('');
+                    document.getElementById('modalHighlights').innerHTML = highlightsHTML;
+                    
+                    document.getElementById('modalPoints').textContent = projectData.points;
+                    
+                    const modalImage = document.getElementById('modalImage');
+                    const modalWorkflowLink = document.getElementById('modalWorkflowLink');
+                    
+                    if (projectData.image) {
+                        modalImage.src = projectData.image;
+                        modalImage.style.display = 'block';
+                    } else {
+                        modalImage.style.display = 'none';
+                    }
+                    
+                    if (projectData.workflowLink) {
+                        modalWorkflowLink.href = projectData.workflowLink;
+                        modalWorkflowLink.style.display = 'inline-block';
+                        
+                        // Remove existing extra links
+                        const existingSpreadsheetLink = document.getElementById('modalSpreadsheetLink');
+                        if (existingSpreadsheetLink) {
+                            existingSpreadsheetLink.remove();
+                        }
+                        const existingLiveLink = document.getElementById('modalLiveLink');
+                        if (existingLiveLink) {
+                            existingLiveLink.remove();
+                        }
+                        const existingSourceCodeLink = document.getElementById('modalSourceCodeLink');
+                        if (existingSourceCodeLink) {
+                            existingSourceCodeLink.remove();
+                        }
+                        
+                        // Add spreadsheet link if available
+                        if (projectData.spreadsheetLink) {
+                            const spreadsheetLink = document.createElement('a');
+                            spreadsheetLink.id = 'modalSpreadsheetLink';
+                            spreadsheetLink.href = projectData.spreadsheetLink;
+                            spreadsheetLink.target = '_blank';
+                            spreadsheetLink.rel = 'noopener noreferrer';
+                            spreadsheetLink.textContent = '📊 View Data Spreadsheet';
+                            spreadsheetLink.style.cssText = 'display: inline-block; margin-top: 1rem; margin-left: 1rem; padding: 0.75rem 2rem; background: linear-gradient(135deg, var(--neon-violet), var(--neon-blue)); border-radius: 50px; color: white; font-weight: 600; text-decoration: none; box-shadow: 0 5px 20px rgba(178, 75, 243, 0.3); transition: all 0.3s ease;';
+                            modalWorkflowLink.parentElement.appendChild(spreadsheetLink);
+                        }
+                        
+                        // Add live link if available
+                        if (projectData.liveLink) {
+                            const liveLink = document.createElement('a');
+                            liveLink.id = 'modalLiveLink';
+                            liveLink.href = projectData.liveLink;
+                            liveLink.target = '_blank';
+                            liveLink.rel = 'noopener noreferrer';
+                            liveLink.textContent = '🌐 View Live App';
+                            liveLink.style.cssText = 'display: inline-block; margin-top: 1rem; margin-left: 1rem; padding: 0.75rem 2rem; background: linear-gradient(135deg, #10b981, #3b82f6); border-radius: 50px; color: white; font-weight: 600; text-decoration: none; box-shadow: 0 5px 20px rgba(16, 185, 129, 0.3); transition: all 0.3s ease;';
+                            modalWorkflowLink.parentElement.appendChild(liveLink);
+                        }
+                        
+                        // Add source code download link if available
+                        if (projectData.sourceCodeLink) {
+                            const sourceCodeLink = document.createElement('a');
+                            sourceCodeLink.id = 'modalSourceCodeLink';
+                            sourceCodeLink.href = projectData.sourceCodeLink;
+                            sourceCodeLink.download = 'COMPLETE_SOURCE_CODE.txt';
+                            sourceCodeLink.textContent = '📄 Download Source Code';
+                            sourceCodeLink.style.cssText = 'display: inline-block; margin-top: 1rem; margin-left: 1rem; padding: 0.75rem 2rem; background: linear-gradient(135deg, #f59e0b, #ef4444); border-radius: 50px; color: white; font-weight: 600; text-decoration: none; box-shadow: 0 5px 20px rgba(245, 158, 11, 0.3); transition: all 0.3s ease;';
+                            modalWorkflowLink.parentElement.appendChild(sourceCodeLink);
+                        }
+                    } else {
+                        modalWorkflowLink.style.display = 'none';
+                    }
+                    
+                    modal.style.display = 'flex';
+                }
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
